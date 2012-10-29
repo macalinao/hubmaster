@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'stringio'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'hubmaster.rb'))
+
+if ARGV.length > 0
+  Github.connection
+
+  if ARGV[0] == "view"
+    puts Github::Repos.view    
+  else
+    puts "Unknown"
+  end
+  exit
+else
+  puts "Instructions Here"
+end
+
