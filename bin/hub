@@ -4,7 +4,7 @@ require 'stringio'
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'hubmaster.rb'))
 
 if ARGV.length > 0
-  Github.connection
+  Github.connect
 
   if ARGV[0] == "view"
     puts Github::Repos.view    
