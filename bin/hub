@@ -4,13 +4,14 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'hubmast
 
 if ARGV.length > 0
   Github.connect
-
-  if ARGV[0] == "view"
-    puts Github::Repos.view    
-  else
-    puts "Unknown"
-  end
-  exit
+  
+  result = case ARGV[0]
+    when "view"
+      puts Github::Repos.view    
+    else
+      puts "Unknown"
+    end
+    exit
 else
   puts "Instructions Here"
 end
