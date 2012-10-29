@@ -30,8 +30,12 @@ module Github
   end
 
   class Repos
-    def self.view
-      request = Github.makeRequest("/user/repos")  
+    def self.view(user = nil)
+      if user.nil?
+        request = Github.makeRequest("/user/repos")  
+      else
+        request = Github.makeRequest("/users/#{user}/repos")  
+      end
       JSON.parse(request).each do |repo|
         puts "#{repo['name']} (#{repo['url']})"  
         puts " - Language: #{repo['language']}"
