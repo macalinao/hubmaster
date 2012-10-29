@@ -2,11 +2,12 @@ require 'rubygems'
 require 'highline/import'
 require 'net/http'
 require 'net/https'
+require 'stringio'
 
 module Github
   def self.connect
       print "Username: "
-      @user = gets.chomp
+      @user = STDIN.gets.chomp
       @pass = ask("Password: ") {|q| q.echo = "*"}
 
       return nil
