@@ -31,7 +31,3 @@ module Github
     end
   end
 end
-
-conn = Github::Connection.new
-
-puts Github::Repos.new(conn).view.inspect
