@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'stringio'
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'hubmaster.rb'))
 
 if ARGV.length > 0
