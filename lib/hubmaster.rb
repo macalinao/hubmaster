@@ -8,6 +8,8 @@ module Github
       print "Username: "
       @user = gets.chomp
       @pass = ask("Password: ") {|q| q.echo = "*"}
+
+      return nil
   end
 
   def self.makeRequest(path, username = @user, password = @pass, server = "api.github.com")
