@@ -8,11 +8,7 @@ if ARGV.length > 0
       case ARGV[1]
         when "-view"
           Github.connect
-          if ARGV.length <= 2
-            Github::Repos.view
-          else
-            Github::Repos.view(ARGV[2].to_s)
-          end    
+          Github::Repos.view
         else
           puts "Unknown"
         end
