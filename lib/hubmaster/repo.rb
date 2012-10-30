@@ -40,9 +40,13 @@ module Github
 
       jsonHash = {"name" => name, "description" => description}.to_json
       request = Github.makePostRequest("/user/repos", jsonHash)
-      
-      #puts "Create command sent for repository \"#{name}\"! Hosted at: #{JSON.parse(request)["url"]}"
-      puts request
+      response = JSON.parse(request)
+
+      if response["errors"].nil?
+        puts "Create command sent for repository \"#{name}\"! Hosted at: #{JSON.parse(request)["url"]}"
+      else
+        puts "ERROR: #{response['errors']['message']}"
+      end
       puts ""
     end
 
