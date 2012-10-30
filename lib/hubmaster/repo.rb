@@ -20,6 +20,7 @@ module Github
           updated_at_date = "#{updated_at_date[1]}/#{updated_at_date[2]}/#{updated_at_date[0]}" 
           puts " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
           puts " - Owner: #{repo['owner']['name']} (#{repo['owner']['login']})"
+          puts repo
         end
       else
         puts "No repositories found."
@@ -66,8 +67,7 @@ module Github
 
       request = Github.makeDeleteRequest("/repos/#{@owner}/#{name}")
       
-      #puts "Delete command sent for repository #{name}!"
-      puts request
+      puts "Delete command sent for repository #{name}!"
       puts ""
     end
   end
