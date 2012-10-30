@@ -43,7 +43,7 @@ module Github
       response = JSON.parse(request)
 
       if response["errors"].nil?
-        puts "Create command sent for repository \"#{name}\"! Hosted at: #{JSON.parse(request)["url"]}"
+        puts "Repository \"#{name}\" succesfully created! Hosted at: #{JSON.parse(request)["url"]}"
       else
         puts "ERROR: #{response['errors'][0]['message']}"
       end
@@ -66,7 +66,8 @@ module Github
 
       request = Github.makeDeleteRequest("/repos/#{@owner}/#{name}")
       
-      puts "Delete command sent for repository #{name}!"
+      #puts "Delete command sent for repository #{name}!"
+      puts request
       puts ""
     end
   end
