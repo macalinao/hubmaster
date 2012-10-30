@@ -6,7 +6,7 @@ Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The curre
 
 To use as a library, add this line to your application's Gemfile:
   
-  gem 'hubmaster'
+    gem 'hubmaster'
 
 And then execute:
   
