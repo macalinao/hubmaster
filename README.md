@@ -10,17 +10,17 @@ To use as a library, add this line to your application's Gemfile:
 
 And then execute:
   
-  bundle install
+    bundle install
 
 To use as a command line tool, run:
 
-  sudo gem install hubmaster
+    sudo gem install hubmaster
 
 ## Usage
 
 To use this gem, you execute:
 
-  hub repos -modifier params
+    hub repos -modifier params
 
 To list all repositories under your account, the modifier is "list" and no parameters are necessary.
 
