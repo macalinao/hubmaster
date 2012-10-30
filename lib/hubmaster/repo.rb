@@ -21,11 +21,12 @@ module Github
           updated_at_date = updated_at[0].split("-")
           updated_at_date = "#{updated_at_date[1]}/#{updated_at_date[2]}/#{updated_at_date[0]}" 
           puts " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
+          puts ""
         end
       else
         puts "No repositories found."
+        puts ""
       end
-      puts ""
     end
 
     def self.create(name, description)
