@@ -45,7 +45,7 @@ module Github
       if response["errors"].nil?
         puts "Create command sent for repository \"#{name}\"! Hosted at: #{JSON.parse(request)["url"]}"
       else
-        puts "ERROR: #{JSON.parse(response['errors'])['message']}"
+        puts "ERROR: #{response['errors'].inspect}"
       end
       puts ""
     end
