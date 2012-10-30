@@ -10,6 +10,8 @@ module Github
       if !request.nil? 
         JSON.parse(request).each do |repo|
           puts "#{repo['name']} (#{repo['url']})"  
+          puts " - Description: #{repo['description']}"
+          puts " - Owner: #{repo['owner']['login']}"
           puts " - Language: #{repo['language']}"
           created_at = repo['created_at'].split("T")
           created_at_date = created_at[0].split("-")
@@ -19,8 +21,6 @@ module Github
           updated_at_date = updated_at[0].split("-")
           updated_at_date = "#{updated_at_date[1]}/#{updated_at_date[2]}/#{updated_at_date[0]}" 
           puts " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
-          puts " - Owner: #{repo['owner']['name']} (#{repo['owner']['login']})"
-          puts repo
         end
       else
         puts "No repositories found."
