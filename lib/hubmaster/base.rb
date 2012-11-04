@@ -40,5 +40,9 @@ module Github
       response = http.request(req)
       return response.body
   end
+
+  def self.help
+    puts "Hubmaster Help: "
+  end
 end
 

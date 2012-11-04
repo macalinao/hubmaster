@@ -6,20 +6,20 @@ if ARGV.length > 0
   result = case ARGV[0]
     when "repos"
       case ARGV[1]
-        when "-list"
+        when "--list"
           Github.connect
           Github::Repos.list(ARGV[2])
-        when "-create"
+        when "--create"
           Github.connect
           Github::Repos.create(ARGV[2], ARGV[3])
-        when "-delete"
+        when "--delete"
           Github.connect
           Github::Repos.delete(ARGV[2])
         else
           puts "Unknown Command: Type hub help for usage instructions."
         end
     when "help"
-      puts "To access github repository commands type 'hub repos' followed by the correct modifier.\n To list all of your repositories, the modifier is -list.\n To list someone elses repositories, the modifier is -list followed by their username.\n To create a new repository, the modifier is -create followed by the name and description.\n To delete a repository, the modifier is -delete followed by the name of the repo you would like to delete.\n"
+      Github.help
     else
       puts "Unknown Command: Type hub help for usage instructions."
     end
