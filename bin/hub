@@ -20,6 +20,12 @@ if ARGV.length > 0
         end
     when "help"
       Github.help
+    when "login"
+      case ARGV[1]
+      when "--reset"
+        Github.resetLogin
+      else
+      end
     else
       puts "Unknown Command: Type hub help for usage instructions."
     end
