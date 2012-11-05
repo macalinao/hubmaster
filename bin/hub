@@ -15,6 +15,9 @@ if ARGV.length > 0
         when "--delete"
           Github.connect
           Github::Repos.delete(ARGV[2])
+        when "--get"
+          Github.connect
+          Github::Repos.get(ARGV[2], ARGV[3])
         else
           puts "Unknown Command: Type hub help for usage instructions."
         end

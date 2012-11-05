@@ -71,5 +71,38 @@ module Github
       puts "Delete command sent for repository #{name}!"
       puts ""
     end
+
+    def self.get(owner, name)
+      if !name.nil?
+        if owner == "self"
+          request = Github.makeGetRequest("/repos/#{Github.user}/#{name}")  
+        else
+          request = Github.makeGetRequest("/repos/#{owner}/#{name}")  
+        end
+      
+        if !request.nil? 
+          repo = JSON.parse(request)
+            puts "#{repo['name']} (#{repo['url']})"  
+            puts " - Description: #{repo['description']}"
+            puts " - Owner: #{repo['owner']['login']}"
+            puts " - Language: #{repo['language']}"
+            created_at = repo['created_at'].split("T")
+            created_at_date = created_at[0].split("-")
+            created_at_date = "#{created_at_date[1]}/#{created_at_date[2]}/#{created_at_date[0]}" 
+            puts " - Created At: #{created_at[1]} on #{created_at_date}"
+            updated_at = repo['updated_at'].split("T")
+            updated_at_date = updated_at[0].split("-")
+            updated_at_date = "#{updated_at_date[1]}/#{updated_at_date[2]}/#{updated_at_date[0]}" 
+            puts " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
+            puts ""
+        else
+          puts "No repositories found."
+          puts ""
+        end
+      else
+        puts "A repository name must be specified."
+        puts ""
+      end      
+    end
   end
 end

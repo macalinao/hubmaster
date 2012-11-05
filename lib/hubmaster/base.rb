@@ -28,6 +28,10 @@ module Github
     return nil
   end
 
+  def self.user
+    return @user
+  end
+
   def self.makeGetRequest(path, username = @user, password = @pass, server = "api.github.com")
       http = Net::HTTP.new(server,443)
       req = Net::HTTP::Get.new(path)
