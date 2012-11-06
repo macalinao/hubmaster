@@ -14,4 +14,5 @@ Gem::Specification.new do |gem|
   gem.name          = "hubmaster"
   gem.version       = Github::VERSION
   gem.add_dependency "highline"
+  gem.add_dependency "json"
 end
