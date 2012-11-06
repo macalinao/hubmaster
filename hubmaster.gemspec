@@ -13,4 +13,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "hubmaster"
   gem.version       = Github::VERSION
+  gem.add_dependency "highline"
 end
