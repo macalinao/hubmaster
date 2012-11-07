@@ -18,14 +18,45 @@ To use as a command line tool, run:
 
 ## Usage
 
-To use this gem, you execute:
+The general form for executing commands is `hub repos --modifier [params]`. All parameters that include spaces must be encased in quotes.
 
-    hub repos -modifier params
+**BEWARE:** For the purposes of this document, when words are surrounded by brackets, the indicated value should be placed there **without brackets**.
 
-To list all repositories under your account, the modifier is "list" and no parameters are necessary.
+***
 
-To list all repositories under someone elses account, the modifier is "list" and the users name is the parameter.
+To list all repositories under your account:
 
-To create a new repository, the modifier is "create" and there are two parameters. The first is the name of the repository (place in quotes if multiword) and the next is the description (place in quotes if multiword). Additionally this command can be run with no parameters and you will be prompted for them later.
+    hub repos --list
 
-To delete an existing repository, the modifier is "delete" and only one parameter is required. The parameter is the name of the repository you wish to delete. You can also omit the the parameter and you will be prompted for it later.
+***
+
+To list all repositories under someone elses account:
+
+    hub repos --list [username]
+
+***
+
+To create a new repository:
+
+    hub repos --create [name] "[description]"
+  *Additionaly this command can be run with no parameters and you will be prompted for them later.*
+
+***
+
+To delete an existing repository:
+
+    hub repos --delete [name]
+  *Andy you will be asked to confirm by typing the name of the repository specified.*
+
+***
+
+To edit an existing repository:
+
+    hub repos --edit [name] -option [option dependent variable]
+
+  *The edit command takes several parameters and can be kind of confusing. First you specify
+  the name of the repository you would like to edit, followed by the part you would like to edit.
+  Currently all that can be edited is the the description, so the '-option' would look like '-description'.
+  Finally, you can either specify the change now or be prompted for it later.*
+
+**REMEMBER: IF ANY PARAMETERS INCLUDE SPACES, THEY MUST BE ENCASED IN QUOTES**
