@@ -18,6 +18,14 @@ if ARGV.length > 0
         when "--get"
           Github.connect
           Github::Repos.get(ARGV[2], ARGV[3])
+        when "--edit"
+          Github.connect
+          case ARGV[3]
+          when "-description"
+            Github::Repos.edit(:description, ARGV[2], ARGV[4])
+          else
+           puts "Unknown modifier for edit '#{ARGV[2]}'. Tyle hub help for assistance."
+          end 
         else
           puts "Unknown Command: Type hub help for usage instructions."
         end

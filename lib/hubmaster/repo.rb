@@ -57,6 +57,35 @@ module Github
       puts ""
     end
 
+    def self.edit(operation, name, op)
+      if name.nil?
+        print "Name of repository you wish to edit: "
+        name = STDIN.gets.chomp
+      end
+
+      case operation
+      when :description
+        if op.nil?
+          print "Intended description of repository: "
+          op = STDIN.gets.chomp
+        end
+
+        jsonHash = {"name" => name, "description" => op}.to_json
+        request = Github.makeEditRequest("/repos/#{Github.user}/#{name}", jsonHash)
+      end
+      
+      response = JSON.parse(request)
+
+      if response["errors"].nil? && response["message"].nil?
+        puts "Repository \"#{name}\" succesfully edited! See updates at: #{JSON.parse(request)["url"]}"
+      elsif !response["errors"].nil?
+        puts "ERROR: #{response['errors'][0]['message']}"
+      elsif !response["message"].nil?
+        puts "ERROR: #{response["message"]}"
+      end
+      puts ""
+    end
+
     def self.delete(name)
       if name.nil?
         print "Name of repository: "
@@ -100,9 +129,15 @@ module Github
         
         if response["errors"].nil? && response["message"].nil?
           puts "#{response['name']} (#{response['url']})"  
-          puts " - Description: #{response['description']}"
           puts " - Owner: #{response['owner']['login']}"
+          puts " - Description: #{response['description']}"
+          puts " - Private: #{response['private']}"
+          puts " - Fork: #{response['fork']}"
           puts " - Language: #{response['language']}"
+          puts " - Forks: #{response['forks']}"
+          puts " - Watchers: #{response['watchers']}"
+          puts " - Master Branch: #{response['master_branch']}"
+          puts " - Open Issues: #{response['open_issues']}"
           created_at = response['created_at'].split("T")
           created_at_date = created_at[0].split("-")
           created_at_date = "#{created_at_date[1]}/#{created_at_date[2]}/#{created_at_date[0]}" 

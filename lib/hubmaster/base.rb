@@ -60,6 +60,16 @@ module Github
       return response.body
   end
 
+  def self.makeEditRequest(path, body, username = @user, password = @pass, server = "api.github.com")
+      http = Net::HTTP.new(server,443)
+      req = Net::HTTP::Post.new(path)
+      http.use_ssl = true
+      req.basic_auth username, password
+      req.body = body
+      response = http.request(req)
+      return response.body
+  end
+
   def self.help
     puts "Hubmaster Help: "
   end
