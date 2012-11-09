@@ -1,5 +1,6 @@
 module Github
   def self.connect
+    run_pager
     if File.exists? "#{Dir.home}/.hubmaster"
       content = []
       File.open("#{Dir.home}/.hubmaster", "rb") do |fileC|
