@@ -11,7 +11,7 @@ module Github
 
       if response.kind_of?(Array)
         response.each do |repo|
-          puts "#{repo['name']} (#{repo['url']})"  
+          puts "#{repo['name']} (#{repo['ssh_url']})"  
           puts " - Description: #{repo['description']}"
           puts " - Owner: #{repo['owner']['login']}"
           puts " - Language: #{repo['language']}"
@@ -48,7 +48,7 @@ module Github
       response = JSON.parse(request)
 
       if response["errors"].nil? && response["message"].nil?
-        puts "Repository \"#{name}\" succesfully created! Hosted at: #{JSON.parse(request)["url"]}"
+        puts "Repository \"#{name}\" succesfully created! Hosted at: #{JSON.parse(request)["ssh_url"]}"
       elsif !response["errors"].nil?
         puts "ERROR: #{response['errors'][0]['message']}"
       elsif !response["message"].nil?
@@ -77,7 +77,7 @@ module Github
       response = JSON.parse(request)
 
       if response["errors"].nil? && response["message"].nil?
-        puts "Repository \"#{name}\" succesfully edited! See updates at: #{JSON.parse(request)["url"]}"
+        puts "Repository \"#{name}\" succesfully edited! See updates at: #{JSON.parse(request)["html_url"]}"
       elsif !response["errors"].nil?
         puts "ERROR: #{response['errors'][0]['message']}"
       elsif !response["message"].nil?
@@ -128,7 +128,7 @@ module Github
         response = JSON.parse(request)
         
         if response["errors"].nil? && response["message"].nil?
-          puts "#{response['name']} (#{response['url']})"  
+          puts "#{response['name']} (#{response['ssh_url']})"  
           puts " - Owner: #{response['owner']['login']}"
           puts " - Description: #{response['description']}"
           puts " - Private: #{response['private']}"
