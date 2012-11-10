@@ -1,3 +1,3 @@
 class Github
-  VERSION = "0.0.07"
+  VERSION = "0.0.08"
 end

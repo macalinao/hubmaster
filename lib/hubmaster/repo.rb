@@ -1,6 +1,8 @@
 module Github
   class Repos
     def self.list(user = nil)
+
+      toput = []
       if user.nil?
         request = Github.makeGetRequest("/user/repos?sort=pushed")  
       else
@@ -11,25 +13,27 @@ module Github
 
       if response.kind_of?(Array)
         response.each do |repo|
-          puts "#{repo['name']} (#{repo['ssh_url']})"  
-          puts " - Description: #{repo['description']}"
-          puts " - Owner: #{repo['owner']['login']}"
-          puts " - Language: #{repo['language']}"
+          toput << "#{repo['name']} (#{repo['ssh_url']})"  
+          toput << " - Description: #{repo['description']}"
+          toput << " - Owner: #{repo['owner']['login']}"
+          toput << " - Language: #{repo['language']}"
           created_at = repo['created_at'].split("T")
           created_at_date = created_at[0].split("-")
           created_at_date = "#{created_at_date[1]}/#{created_at_date[2]}/#{created_at_date[0]}" 
-          puts " - Created At: #{created_at[1]} on #{created_at_date}"
+          toput << " - Created At: #{created_at[1]} on #{created_at_date}"
           updated_at = repo['updated_at'].split("T")
           updated_at_date = updated_at[0].split("-")
           updated_at_date = "#{updated_at_date[1]}/#{updated_at_date[2]}/#{updated_at_date[0]}" 
-          puts " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
-          puts ""
+          toput << " - Last Updated: #{updated_at[1]} on #{updated_at_date}"
+          toput << ""
         end
       elsif !response["errors"].nil?
         puts "ERROR: #{response['errors'][0]['message']}"
       elsif !response["message"].nil?
         puts "ERROR: #{response["message"]}"
       end
+      
+      putLess toput unless toput = []
     end
 
     def self.create(name, description)
@@ -120,6 +124,8 @@ module Github
     def self.get(owner, name, operator, branch = nil)
       owner = Github.user if owner == "self"
 
+      toput = []
+
       if owner.nil?
         print "Name of owner: "
         owner = STDIN.gets.chomp
@@ -137,10 +143,10 @@ module Github
 
         if response.kind_of?(Array)
           response.each do |contributer|
-            puts "User #{contributer["login"]}"
-            puts " - URL: #{contributer["url"]}"
-            puts " - Contributions #{contributer["contributions"]}"
-            puts ""
+            toput << "User #{contributer["login"]}"
+            toput << " - URL: #{contributer["url"]}"
+            toput << " - Contributions #{contributer["contributions"]}"
+            toput << ""
           end
         elsif !response["errors"].nil?
           puts "ERROR: #{response['errors'][0]['message']}"
@@ -155,8 +161,8 @@ module Github
 
         if response["errors"].nil? && response["message"].nil?
           response.each do |language, bytes|
-            puts "#{bytes} bytes written in #{language}."
-            puts ""
+            toput << "#{bytes} bytes written in #{language}."
+            toput << ""
           end
         elsif !response["errors"].nil?
           puts "ERROR: #{response['errors'][0]['message']}"
@@ -171,8 +177,8 @@ module Github
 
         if response.kind_of?(Array)
           response.each do |team|
-            puts "Team: #{team["name"]}"
-            puts " - URL: #{team["url"]}"
+            toput << "Team: #{team["name"]}"
+            toput << " - URL: #{team["url"]}"
             puts ""
           end
         elsif !response["errors"].nil?
@@ -188,10 +194,10 @@ module Github
 
         if response.kind_of?(Array)
           response.each do |tag|
-            puts "Tag Name: #{tag["name"]}"
-            puts " - Commit URL: #{tag["commit"]["url"]}"
-            puts " - Commit SHA: #{tag["commit"]["sha"]}"
-            puts ""
+            toput << "Tag Name: #{tag["name"]}"
+            toput << " - Commit URL: #{tag["commit"]["url"]}"
+            toput << " - Commit SHA: #{tag["commit"]["sha"]}"
+            toput << ""
           end
         elsif !response["errors"].nil?
           puts "ERROR: #{response['errors'][0]['message']}"
@@ -206,9 +212,9 @@ module Github
 
         if response.kind_of?(Array)
           response.each do |branch|
-            puts "Branch Name: #{branch["name"]}"
-            puts " - Commit URL: #{branch["commit"]["url"]}"
-            puts " - Commit SHA: #{branch["commit"]["sha"]}"
+            toput << "Branch Name: #{branch["name"]}"
+            toput << " - Commit URL: #{branch["commit"]["url"]}"
+            toput << " - Commit SHA: #{branch["commit"]["sha"]}"
             puts ""
           end
         elsif !response["errors"].nil?
@@ -280,7 +286,9 @@ module Github
           puts "ERROR: #{response["message"]}"
         end
         puts ""
-      end      
+      end 
+      
+      putLess toput unless toput == []   
     end
   end
 end
