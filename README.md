@@ -34,6 +34,18 @@ command line tool that allows github web operations to be carried out in termina
 
 2. **BEWARE:** For the purposes of this document, when words are surrounded by brackets, the indicated value should be placed there **without brackets**.
 
+<a name="repos"/>
+## Repository Documentation
+
+This section of the documentation includes all the necessary information on interfacing with repositories through hubmaster. There are five main functions that will be described in further detail:
+
+1. List
+2. Get
+3. Create
+4. Edit
+5. Delete
+
+### List
 ***
 
 To list all repositories under your account:
@@ -48,6 +60,8 @@ To list all repositories under someone elses account:
 
 ***
 
+### Create
+
 To create a new repository:
 
     hub repos --create [name] "[description]"
@@ -55,12 +69,16 @@ To create a new repository:
 
 ***
 
+### Delete
+
 To delete an existing repository:
 
     hub repos --delete [name]
   *Andy you will be asked to confirm by typing the name of the repository specified.*
 
 ***
+
+### Edit
 
 To edit an existing repository:
 
