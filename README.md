@@ -8,6 +8,10 @@ Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The curre
 * [Overview](#overview)
 * [Repository Documentation](#repos)
     * [List](#reposList)
+    * [Get](#reposGet)
+    * [Create](#reposCreate)
+    * [Edit](#reposEdit)
+    * [Delete](#reposDelete)
 
 <a name="install"/>
 ## Installation
@@ -37,14 +41,10 @@ command line tool that allows github web operations to be carried out in termina
 <a name="repos"/>
 ## Repository Documentation
 
-This section of the documentation includes all the necessary information on interfacing with repositories through hubmaster. There are five main functions that will be described in further detail:
+This section of the documentation includes all the necessary information on interfacing with repositories through hubmaster. 
+There are five main functions that will be described in further detail: List, Get, Create, Edit, and Delete.
 
-1. List
-2. Get
-3. Create
-4. Edit
-5. Delete
-
+<a name="reposList"/>
 ### List
 ***
 
@@ -60,6 +60,7 @@ To list all repositories under someone elses account:
 
 ***
 
+<a name="reposCreate"/>
 ### Create
 
 To create a new repository:
@@ -69,6 +70,7 @@ To create a new repository:
 
 ***
 
+<a name="reposDelete"/>
 ### Delete
 
 To delete an existing repository:
@@ -78,6 +80,7 @@ To delete an existing repository:
 
 ***
 
+<a name="reposEdit"/>
 ### Edit
 
 To edit an existing repository:
