@@ -46,19 +46,19 @@ There are five main functions that will be described in further detail: List, Ge
 
 <a name="reposList"/>
 ### List
-***
 
 To list all repositories under your account:
 
     hub repos --list
 
-***
 
 To list all repositories under someone elses account:
 
     hub repos --list [username]
 
-***
+<a name="reposGet">
+### Get
+
 
 <a name="reposCreate"/>
 ### Create
@@ -67,18 +67,6 @@ To create a new repository:
 
     hub repos --create [name] "[description]"
   *Additionaly this command can be run with no parameters and you will be prompted for them later.*
-
-***
-
-<a name="reposDelete"/>
-### Delete
-
-To delete an existing repository:
-
-    hub repos --delete [name]
-  *Andy you will be asked to confirm by typing the name of the repository specified.*
-
-***
 
 <a name="reposEdit"/>
 ### Edit
@@ -93,3 +81,13 @@ To edit an existing repository:
   Finally, you can either specify the change now or be prompted for it later.*
 
 **REMEMBER: IF ANY PARAMETERS INCLUDE SPACES, THEY MUST BE ENCASED IN QUOTES**
+
+<a name="reposDelete"/>
+### Delete
+
+To delete an existing repository:
+
+    hub repos --delete [name]
+  *Andy you will be asked to confirm by typing the name of the repository specified.*
+
+
