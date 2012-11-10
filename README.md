@@ -6,6 +6,8 @@ Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The curre
 
 * [Installation](#install)
 * [Usage](#usage)
+  * [Repos](#repos)
+    * [List](#reposList)
 
 <a name="install"/>
 ## Installation
