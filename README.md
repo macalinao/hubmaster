@@ -2,6 +2,12 @@
 
 Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The current version only permit repository interactions (list, create, delete), but feel free to fork and contribute!
 
+## Table of Contents
+
+* [Installation](install)
+* [Usage](usage)
+
+<a name="install"/>
 ## Installation
 
 To use as a library, add this line to your application's Gemfile:
@@ -16,6 +22,7 @@ To use as a command line tool, run:
 
     sudo gem install hubmaster
 
+<a name="usage"/>
 ## Usage
 
 The general form for executing commands is `hub repos --modifier [params]`. All parameters that include spaces must be encased in quotes.
