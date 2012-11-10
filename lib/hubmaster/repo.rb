@@ -117,14 +117,142 @@ module Github
       puts ""
     end
 
-    def self.get(owner, name)
-      if !name.nil?
-        if owner == "self"
-          request = Github.makeGetRequest("/repos/#{Github.user}/#{name}")  
-        else
-          request = Github.makeGetRequest("/repos/#{owner}/#{name}")  
+    def self.get(owner, name, operator, branch = nil)
+      owner = Github.user if owner == "self"
+
+      if owner.nil?
+        print "Name of owner: "
+        owner = STDIN.gets.chomp
+      end
+      
+      if name.nil? 
+        print "Name of repository: "
+        name = STDIN.gets.chomp
+      end
+
+      case operator
+      when :contributers
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/contributors")  
+        response = JSON.parse(request)
+
+        if response.kind_of?(Array)
+          response.each do |contributer|
+            puts "User #{contributer["login"]}"
+            puts " - URL: #{contributer["url"]}"
+            puts " - Contributions #{contributer["contributions"]}"
+            puts ""
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+          puts ""
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+          puts ""
+        end
+      when :languages
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/languages")  
+        response = JSON.parse(request)
+
+        if response["errors"].nil? && response["message"].nil?
+          response.each do |language, bytes|
+            puts "#{bytes} bytes written in #{language}."
+            puts ""
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+          puts ""
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+          puts ""
+        end
+      when :teams #UNTESTED METHOD BECAUSE I DONT KNOW ANY EXAMPLES
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/teams")  
+        response = JSON.parse(request)
+
+        if response.kind_of?(Array)
+          response.each do |team|
+            puts "Team: #{team["name"]}"
+            puts " - URL: #{team["url"]}"
+            puts ""
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+          puts ""
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+          puts ""
+        end
+      when :tags 
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/tags")  
+        response = JSON.parse(request)
+
+        if response.kind_of?(Array)
+          response.each do |tag|
+            puts "Tag Name: #{tag["name"]}"
+            puts " - Commit URL: #{tag["commit"]["url"]}"
+            puts " - Commit SHA: #{tag["commit"]["sha"]}"
+            puts ""
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+          puts ""
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+          puts ""
+        end
+      when :branches 
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/branches")  
+        response = JSON.parse(request)
+
+        if response.kind_of?(Array)
+          response.each do |branch|
+            puts "Branch Name: #{branch["name"]}"
+            puts " - Commit URL: #{branch["commit"]["url"]}"
+            puts " - Commit SHA: #{branch["commit"]["sha"]}"
+            puts ""
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+          puts ""
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+          puts ""
+        end
+      when :branch
+        if branch.nil?
+          print "Branch to view: "
+          branch = STDIN.gets.chomp
         end
 
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}/branches/#{branch}")  
+        response = JSON.parse(request)
+        
+        if response["errors"].nil? && response["message"].nil?
+          puts "Branch Name: #{response['name']}"  
+          puts " - Commit SHA: #{response["commit"]["sha"]}"
+          puts " - Message: #{response["commit"]["commit"]["message"]}"
+          puts " - Author: #{response["commit"]["author"]["login"]}"
+          puts "   - Author Name: #{response["commit"]["commit"]["author"]["name"]}"
+          puts "   - Author Email: #{response["commit"]["commit"]["author"]["email"]}"
+          
+          if response["commit"]["committer"]["login"] != response["commit"]["author"]["login"]
+            puts " - Commiter: #{response["commit"]["committer"]["login"]}"
+            puts "   - Commiter Name: #{response["commit"]["commit"]["committer"]["name"]}"
+            puts "   - Commiter Email: #{response["commit"]["commit"]["committer"]["email"]}"
+          end
+
+          puts " - Parents:"
+          response["commit"]["parents"].each do |parent|
+            puts "   - Parent SHA: #{parent["sha"]}"
+          end
+        elsif !response["errors"].nil?
+          puts "ERROR: #{response['errors'][0]['message']}"
+        elsif !response["message"].nil?
+          puts "ERROR: #{response["message"]}"
+        end
+        puts ""
+      when :repository
+        request = Github.makeGetRequest("/repos/#{owner}/#{name}")  
         response = JSON.parse(request)
         
         if response["errors"].nil? && response["message"].nil?
@@ -151,9 +279,6 @@ module Github
         elsif !response["message"].nil?
           puts "ERROR: #{response["message"]}"
         end
-         puts ""
-      else
-        puts "A repository name must be specified."
         puts ""
       end      
     end

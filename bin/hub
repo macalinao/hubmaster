@@ -17,7 +17,25 @@ if ARGV.length > 0
           Github::Repos.delete(ARGV[2])
         when "--get"
           Github.connect
-          Github::Repos.get(ARGV[2], ARGV[3])
+
+          case ARGV[2]
+          when "-contributers", "-contribs"
+            Github::Repos.get(ARGV[3], ARGV[4], :contributers)
+          when "-repo", "-repository"
+            Github::Repos.get(ARGV[3], ARGV[4], :repository)
+          when "-langs", "-languages"
+            Github::Repos.get(ARGV[3], ARGV[4], :languages)
+          when "-teams"
+            Github::Repos.get(ARGV[3], ARGV[4], :teams)
+          when "-tags"
+            Github::Repos.get(ARGV[3], ARGV[4], :tags)
+          when "-branches"
+            Github::Repos.get(ARGV[3], ARGV[4], :branches)
+          when "-branch"
+            Github::Repos.get(ARGV[3], ARGV[4], :branch, ARGV[5])
+          else
+            puts "Unknown modifier for get '#{ARGV[2]}'. Tyle hub help for assistance."
+          end  
         when "--edit"
           Github.connect
           case ARGV[3]
