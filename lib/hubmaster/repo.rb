@@ -33,7 +33,7 @@ module Github
         puts "ERROR: #{response["message"]}"
       end
       
-      putLess toput unless toput = []
+      putLess toput unless toput == []
     end
 
     def self.create(name, description)
