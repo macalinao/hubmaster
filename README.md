@@ -1,12 +1,12 @@
 # Hubmaster
 
-Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The current version only permit repository interactions (list, create, delete), but feel free to fork and contribute!
+Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The current version only permits repository interactions, but feel free to fork and contribute!
 
 ## Table of Contents
 
 * [Installation](#install)
-* [Usage](#usage)
-  * [Repos](#repos)
+* [Overview](#overview)
+* [Repository Documentation](#repos)
     * [List](#reposList)
 
 <a name="install"/>
@@ -24,12 +24,15 @@ To use as a command line tool, run:
 
     sudo gem install hubmaster
 
-<a name="usage"/>
-## Usage
+<a name="overview"/>
+## Overview
 
-The general form for executing commands is `hub repos --modifier [params]`. All parameters that include spaces must be encased in quotes.
+Hubmaster is a library written in ruby that makes interfacing with github a snap! In adition to being a library, hubmaster also includes an executable 
+command line tool that allows github web operations to be carried out in terminal. The rest of the document details how hubmaster should be used, but there are a few things to note beforehand.
 
-**BEWARE:** For the purposes of this document, when words are surrounded by brackets, the indicated value should be placed there **without brackets**.
+1. The general form for executing commands is `hub repos --modifier [params]`. All parameters that include spaces must be encased in quotes.
+
+2. **BEWARE:** For the purposes of this document, when words are surrounded by brackets, the indicated value should be placed there **without brackets**.
 
 ***
 
