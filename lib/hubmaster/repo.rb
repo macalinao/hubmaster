@@ -137,7 +137,7 @@ module Github
       end
 
       case operator
-      when :contributers
+      when :contributors
         request = Github.makeGetRequest("/repos/#{owner}/#{name}/contributors")  
         response = JSON.parse(request)
 
