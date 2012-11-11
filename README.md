@@ -69,7 +69,7 @@ To list all of the repositories linked with someone elses account, you would exe
 
 The "get" function carries out operations that refer to a single repository. There are 7 simple modifiers bundled within this function that do the following:
 
-1. [List the contributers of a repository,](#getC)
+1. [List the contributors of a repository,](#getC)
 2. [List the languages used in a repository,](#getL)
 3. [List the teams associated with a repository,](#getT)
 4. [List the tags of a repository,](#getTags)
@@ -84,12 +84,12 @@ The general form for making get requests is as follows:
 If you wish to get information on one of your own repositories, either use your login or "self" for the [user] parameter
 
 <a name="getC"/>
-#### Get Contributers
+#### Get Contributors
 ***
 
-To list all of the contributers for a specific repository, execute the following:
+To list all of the contributors for a specific repository, execute the following:
 
-    hub repos --get -contributers [user] [repository name]
+    hub repos --get -contributors [user] [repository name]
 
 <a name="getL"/>
 #### Get Languages

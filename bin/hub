@@ -19,8 +19,8 @@ if ARGV.length > 0
           Github.connect
 
           case ARGV[2]
-          when "-contributers", "-contribs"
-            Github::Repos.get(ARGV[3], ARGV[4], :contributers)
+          when "-contributors", "-contribs"
+            Github::Repos.get(ARGV[3], ARGV[4], :contributors)
           when "-repo", "-repository"
             Github::Repos.get(ARGV[3], ARGV[4], :repository)
           when "-langs", "-languages"
