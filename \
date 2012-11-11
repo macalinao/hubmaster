@@ -6,6 +6,7 @@ Hubmaster is a rubygem that allows GitHub API interaction in Terminal. The curre
 
 * [Installation](#install)
 * [Overview](#overview)
+* [Authentication Documentation](#auth)
 * [Repository Documentation](#repos)
     * [List](#reposList)
     * [Get](#reposGet)
@@ -40,6 +41,9 @@ command line tool that allows github web operations to be carried out in termina
 
 **BEWARE:** For the purposes of this document, when words are surrounded by brackets, the indicated value should be placed there **without brackets**.
 
+<a name="auth">
+## Authentication Documentation
+
 <a name="repos"/>
 ## Repository Documentation
 
@@ -48,7 +52,6 @@ There are five main functions that will be described in further detail: List, Ge
 
 <a name="reposList"/>
 ### List
-***
 
 The list function provides an easy way to see both your repositories, or the repositories of someone you know. 
 
@@ -64,84 +67,20 @@ To list all of the repositories linked with someone elses account, you would exe
 **Remember:** In place of "[username]" you should place the username of the person whos repositories you would like to see.
 
 <a name="reposGet">
-### Get 
-***
+### Get
 
 The "get" function carries out operations that refer to a single repository. There are 7 simple modifiers bundled within this function that do the following:
 
-1. [List the contributers of a repository,](#getC)
-2. [List the languages used in a repository,](#getL)
-3. [List the teams associated with a repository,](#getT)
-4. [List the tags of a repository,](#getTags)
-5. [List the various branches of a repository,](#getBs)
-6. [Return information on a specific branch, and](#getB)
-7. [Return information on a specific repository.](#getR)
-
-The general form for making get requests is as follows:
-
-    hub repos --get -operator [user] [repository name] [sometimes branch]
-
-If you wish to get information on one of your own repositories, either use your login or "self" for the [user] parameter
-
-<a name="getC"/>
-#### Get Contributers
-***
-
-To list all of the contributers for a specific repository, execute the following:
-
-    hub repos --get -contributers [user] [repository name]
-
-<a name="getL"/>
-#### Get Languages
-***
-
-To display all of the languages used and how many bits of each were used, the following can be used:
-
-    hub repos --get -languages [user] [repository name]
-
-<a name="getT"/>
-#### Get Teams
-***
-
-To show all of the teams associated with a specific repository, run:
-
-    hub repos --get -teams [user] [repository name]
-
-<a name="getTags"/>
-#### Get Tags
-***
-
-If you want to find all of the tags for a given repository, type:
-
-    hub repos --get -tags [user] [repository name]
-
-<a name="getBs"/>
-#### Get Branches
-***
-
-To list all of branches under a given repository, run:
-    
-    hub repos --get -branches [user] [repository name]
-
-<a name="getB"/>
-#### Get Branch
-***
-
-If you want to get information on a specific branch of a repository, use:
-
-    hub repos --get -branch [user] [repository name] [branch name]
-
-<a name="getR"/>
-#### Get Repository
-***
-
-To get information on a specific repository, all you need to do is execute:
-
-    hub repos --get -repository [user] [repository name]
+1. List the contributers of a repository,
+2. List the languages used in a repository,
+3. List the teams associated with a repository,
+4. List the tags of a repository,
+5. List the various branches of a repository,
+6. Return information on a specific branch, and
+7. Return information on a specific repository. 
 
 <a name="reposCreate"/>
 ### Create
-***
 
 Creating repositories from terminal is both extreemly easy and usefull.
 
@@ -156,7 +95,6 @@ If the description of your repository contains multiple words (usually they do),
 
 <a name="reposEdit"/>
 ### Edit
-***
 
 If you wish to edit an existing repository, the general form is as follows:
 
@@ -175,7 +113,6 @@ The edit command takes several parameters and can be kind of canfusing, so let m
 
 <a name="reposDelete"/>
 ### Delete
-***
 
 If you wish to delete an existing repository, all you have to do is:
 
